@@ -29,4 +29,18 @@ module HTTParty
       end
     end
   end
+
+  unless defined?(Net::HTTP::Purge)
+    class Net::HTTP
+      def options(path, initheader = nil) #:nodoc:
+        request(Purge.new(path, initheader))
+      end
+
+      class Purge < Net::HTTPRequest
+        METHOD = 'PURGE'
+        REQUEST_HAS_BODY = false
+        RESPONSE_HAS_BODY = false
+      end
+    end
+  end
 end

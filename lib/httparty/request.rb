@@ -9,7 +9,8 @@ module HTTParty
       Net::HTTP::Head,
       Net::HTTP::Options,
       Net::HTTP::Move,
-      Net::HTTP::Copy
+      Net::HTTP::Copy,
+      Net::HTTP::Purge
     ]
 
     SupportedURISchemes  = [URI::HTTP, URI::HTTPS, URI::Generic]

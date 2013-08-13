@@ -503,6 +503,12 @@ describe HTTParty do
       end.should raise_error(HTTParty::RedirectionTooDeep) {|e| e.response.body.should == 'first redirect'}
     end
 
+    it "should fail with redirected PURGE" do
+      lambda do
+        @klass.purge('/foo', :no_follow => true)
+      end.should raise_error(HTTParty::RedirectionTooDeep) {|e| e.response.body.should == 'first redirect'}
+    end
+
     it "should fail with redirected PUT" do
       lambda do
         @klass.put('/foo', :no_follow => true)

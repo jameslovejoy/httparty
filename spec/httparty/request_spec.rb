@@ -454,6 +454,11 @@ describe HTTParty::Request do
         @request.perform.should == {"hash" => {"foo" => "bar"}}
       end
 
+      it "should be handled by PURGE transparently" do
+        @request.http_method = Net::HTTP::Purge
+        @request.perform.should == {"hash" => {"foo" => "bar"}}
+      end
+
       it "should be handled by PATCH transparently" do
         @request.http_method = Net::HTTP::Patch
         @request.perform.should == {"hash" => {"foo" => "bar"}}

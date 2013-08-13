@@ -449,6 +449,11 @@ module HTTParty
       perform_request Net::HTTP::Copy, path, options, &block
     end
 
+    # Perform a PURGE request to a path
+    def purge(path, options={}, &block)
+      perform_request Net::HTTP::Purge, path, options, &block
+    end
+
     # Perform a HEAD request to a path
     def head(path, options={}, &block)
       perform_request Net::HTTP::Head, path, options, &block
@@ -525,6 +530,10 @@ module HTTParty
 
   def self.copy(*args, &block)
     Basement.move(*args, &block)
+  end
+
+  def self.purge(*args, &block)
+    Basement.purge(*args, &block)
   end
 
   def self.head(*args, &block)
